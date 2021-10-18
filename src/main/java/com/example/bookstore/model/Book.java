@@ -1,4 +1,4 @@
-package com.example.library.model;
+package com.example.bookstore.model;
 
 import lombok.*;
 import javax.persistence.*;

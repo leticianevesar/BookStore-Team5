@@ -1,4 +1,4 @@
-package com.example.library.utils;
+package com.example.bookstore.utils;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

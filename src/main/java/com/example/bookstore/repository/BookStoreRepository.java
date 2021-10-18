@@ -1,6 +1,6 @@
-package com.example.library.repository;
+package com.example.bookstore.repository;
 
-import com.example.library.model.BookStore;
+import com.example.bookstore.model.BookStore;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;

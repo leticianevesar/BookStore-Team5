@@ -1,6 +1,6 @@
-package com.example.library.controller;
+package com.example.bookstore.controller;
 
-import com.example.library.service.BookService;
+import com.example.bookstore.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

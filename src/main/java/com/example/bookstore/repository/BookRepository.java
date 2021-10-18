@@ -1,6 +1,6 @@
-package com.example.library.repository;
+package com.example.bookstore.repository;
 
-import com.example.library.model.Book;
+import com.example.bookstore.model.Book;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
