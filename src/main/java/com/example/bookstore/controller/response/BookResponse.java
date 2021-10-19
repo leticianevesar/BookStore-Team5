@@ -15,12 +15,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 public class BookResponse
 {
-    //private String id;
+    private String id;
     private String bookTitle;
     private String bookAuthor;
     private BookType bookType;
     private BookStore bookStoreName;
     private BookStore bookStoreCity;
+    //private String address;
 
 
 }

@@ -1,6 +1,7 @@
 package com.example.bookstore.model;
 
 import lombok.*;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
@@ -32,4 +33,6 @@ public class Book {
 
     private BookStore bookStoreCity;
 
+    //@Indexed(unique = true)
+    //private String address;
 }

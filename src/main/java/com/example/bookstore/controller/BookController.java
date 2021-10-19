@@ -31,6 +31,7 @@ public class BookController {
         {
             booksResponse.add(new BookResponse(
                     book.getId(),
+                    book.getBookTitle(),
                     book.getBookAuthor(),
                     book.getBookType(),
                     book.getBookStoreName(),
@@ -48,6 +49,7 @@ public class BookController {
         return new BookResponse(
                 book.getId(),
                 book.getBookTitle(),
+                book.getBookAuthor(),
                 book.getBookType(),
                 book.getBookStoreName(),
                 book.getBookStoreCity()
@@ -56,14 +58,30 @@ public class BookController {
 
     //Make GetMapping Find By Author
 
+    @GetMapping("/getBookById/{bookAuthor}")
+    public BookResponse getBookByBookAuthor (@PathVariable (value = "author") String bookAuthor)
+    {
+        Book book = bookService.findByBookAuthor(bookAuthor);
+
+        return new BookResponse(
+                book.getId(),
+                book.getBookTitle(),
+                book.getBookAuthor(),
+                book.getBookType(),
+                book.getBookStoreName(),
+                book.getBookStoreCity()
+        );
+    }
+
     @PostMapping(value = "book-create", consumes = "application/json", produces = "application/json")
-    public BookResponse bookResponse(@RequestBody BookRequest bookRequest) {
+    public BookResponse addBook(@RequestBody BookRequest bookRequest) {
         Book newBook = Book.builder()
                 .bookTitle(bookRequest.getBookTitle())
                 .bookAuthor(bookRequest.getBookAuthor())
                 .bookType(bookRequest.getBookType())
                 .bookStoreName(bookRequest.getBookStoreName())
                 .bookStoreCity(bookRequest.getBookStoreCity())
+                //.address(bookRequest.getAddress()) //Experiencia
                 .build();
 
         bookService.save(newBook);
