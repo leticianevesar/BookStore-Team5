@@ -12,13 +12,13 @@ public class BookstoreApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BookstoreApplication.class, args);
 	}
+//
+//	@Bean
+//	CommandLineRunner runner(BookRepository bookRepository)
+//	{
+//		return args ->
+//		{
+//
+//		};
 
-	@Bean
-	CommandLineRunner runner(BookRepository bookRepository)
-	{
-		return args ->
-		{
-
-		};
-	}
 }
