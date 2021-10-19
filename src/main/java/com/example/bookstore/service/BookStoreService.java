@@ -1,6 +1,6 @@
-package com.example.library.service;
+package com.example.bookstore.service;
 
-import com.example.library.repository.BookStoreRepository;
+import com.example.bookstore.repository.BookStoreRepository;
 import org.springframework.stereotype.Service;
 
 @Service

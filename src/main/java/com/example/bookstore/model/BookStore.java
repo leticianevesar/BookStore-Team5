@@ -1,4 +1,4 @@
-package com.example.library.model;
+package com.example.bookstore.model;
 
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,17 +13,16 @@ import javax.validation.constraints.NotBlank;
 @ToString
 @AllArgsConstructor
 @Builder
-@Table(name = "Store")
+
 
 public class BookStore {
     @Id
     private String id;
+
     @NotBlank (message = "Name is mandatory")
     @Column(name = "name")
     private String bookStoreName;
 
     @Column(name = "city")
     private String bookStoreCity;
-
-
 }
