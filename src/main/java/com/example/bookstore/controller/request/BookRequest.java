@@ -1,26 +1,21 @@
-package com.example.library.controller.request;
+package com.example.bookstore.controller.request;
 
 
-import com.example.library.model.BookStore;
-import com.example.library.model.BookType;
+import com.example.bookstore.model.BookStore;
+import com.example.bookstore.model.BookType;
 import lombok.*;
-
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Builder
-@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
+@Document
 
 public class BookRequest
 {
     private String bookTitle;
     private String bookAuthor;
-    @Enumerated(EnumType.STRING)
     private BookType bookType; //VERIFY IF IT'S POSSIBLE?????????????
     private BookStore bookStoreName;
     private BookStore bookStoreCity;
