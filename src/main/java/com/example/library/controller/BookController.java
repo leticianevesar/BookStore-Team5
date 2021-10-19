@@ -1,9 +1,14 @@
 package com.example.library.controller;
 
+import com.example.library.controller.request.BookRequest;
+import com.example.library.controller.response.BookResponse;
+import com.example.library.model.Book;
 import com.example.library.service.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
@@ -15,50 +20,29 @@ public class BookController {
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }
+
+
+    @PostMapping(value = "book-create", consumes = "application/json", produces = "application/json")
+    public BookResponse bookResponse(@RequestBody BookRequest bookRequest) {
+        Book newBook = Book.builder()
+                .bookTitle(bookRequest.getBookTitle())
+                .bookAuthor(bookRequest.getBookAuthor())
+                .bookType(bookRequest.getBookType())
+                .bookStoreName(bookRequest.getBookStoreName())
+                .bookStoreCity(bookRequest.getBookStoreCity())
+                .build();
+
+        bookService.save(newBook);
+        BookResponse bookResponse = new BookResponse();
+        bookResponse.setBookTitle(newBook.getBookTitle());
+        bookResponse.setBookAuthor(newBook.getBookAuthor());
+        bookResponse.setBookType(newBook.getBookType());
+        bookResponse.setBookStoreName(newBook.getBookStoreName());
+        bookResponse.setBookStoreCity((newBook.getBookStoreCity()));
+
+        return bookResponse;
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

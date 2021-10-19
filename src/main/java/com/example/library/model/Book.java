@@ -26,8 +26,11 @@ public class Book {
     @Column(name = "author")
     private String bookAuthor;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private BookType bookType; //VERIFY IF IT'S POSSIBLE
 
+    private BookStore bookStoreName;
+
+    private BookStore bookStoreCity;
 
 }

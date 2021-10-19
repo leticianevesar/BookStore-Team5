@@ -6,14 +6,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+@Data
+@Document
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
 @Builder
-@Table
-@Data
-@Document
+@Table(name = "Store")
 
 public class BookStore {
     @Id

@@ -11,13 +11,13 @@ import java.util.Optional;
 @Repository
 @Primary
 public interface BookRepository  extends MongoRepository <Book, String> {
-    Optional<Book> findByBookId(String bookTitle);
+    Optional<Book> findByBookTitle (String bookTitle);
 
-    void save(Book book);
-
-    List<Book> findAll();
-
-    Optional<Book> findById(Long id);
-
-    void deleteById(Long aLong);
+//    void save(Book book);
+//
+//    List<Book> findAll();
+//
+//    Optional<Book> findById(Long id);
+//
+//    void deleteById(Long aLong);
 }
