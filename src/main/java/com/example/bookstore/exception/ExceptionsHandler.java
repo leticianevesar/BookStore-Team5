@@ -24,6 +24,16 @@ public class ExceptionsHandler {
         );
     }
 
+    @ExceptionHandler({DuplicateBookException.class})
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public HttpErrorResponse handleGenericException(DuplicateBookException exception) {
+        return new HttpErrorResponse(
+                409,
+                exception.getMessage(),
+                LocalDateTime.now()
+        );
+    }
+
 //        @ExceptionHandler({SkillNotFound.class})
 //        @ResponseStatus(HttpStatus.NOT_FOUND)
 //        public HttpErrorResponse handleGenericException(SkillNotFound exception) {

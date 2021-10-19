@@ -3,6 +3,7 @@ package com.example.bookstore.service;
 import com.example.bookstore.exception.BookNotFound;
 import com.example.bookstore.model.Book;
 import com.example.bookstore.repository.BookRepository;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,14 @@ public class BookService {
 
     public Book save(Book newBook) {
         return bookRepository.save(newBook);
+
+//        try
+//        {
+//            return bookRepository.save(newBook);
+//        } catch (DuplicateKeyException e)
+//        {
+//            throw new DuplicateBookException();
+//        }
     }
 
     public List<Book> findAll() {
@@ -29,6 +38,9 @@ public class BookService {
     }
 
 
+    public Book findByBookAuthor(String author) {
+        return bookRepository.findByBookAuthor(author).orElseThrow(BookNotFound::new);
+    }
 }
 
 //    // Save listed books
