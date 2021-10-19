@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 public class BookController {
 
-    BookService bookService;
+    private final BookService bookService;
 
-    @Autowired
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }

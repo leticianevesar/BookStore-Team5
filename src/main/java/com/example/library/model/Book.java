@@ -1,9 +1,13 @@
 package com.example.library.model;
 
 import lombok.*;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+@Data
+@Document
 @Getter
 @Setter
 @ToString
@@ -13,7 +17,7 @@ import javax.validation.constraints.NotBlank;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String id;
 
     @NotBlank(message = "Title name is mandatory")
     @Column(name = "title")

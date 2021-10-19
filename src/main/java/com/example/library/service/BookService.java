@@ -9,9 +9,9 @@ import java.util.Optional;
 
 @Service
 public class BookService {
-    BookRepository bookRepository;
+    private final BookRepository bookRepository;
 
-    public void BookRepository(BookRepository bookRepository) {
+    public BookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
