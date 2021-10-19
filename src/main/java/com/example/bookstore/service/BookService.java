@@ -28,6 +28,9 @@ public class BookService {
         return bookRepository.findById(id).orElseThrow(BookNotFound::new);
     }
 
+
+}
+
 //    // Save listed books
 //    public void saveBooks(List<Book> books) {
 //        for (Book book : books) {
@@ -50,4 +53,4 @@ public class BookService {
 //    public void deleteById(Long aLong) {
 //        bookRepository.deleteById(aLong);
 //    }
-}
+
