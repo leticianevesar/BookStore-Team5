@@ -76,7 +76,7 @@ public class BookController {
         );
     }
 
-    @PostMapping(value = "book-create", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "book-create")
     public BookResponse addBook(@RequestBody BookRequest bookRequest) {
         Book newBook = Book.builder()
                 .bookTitle(bookRequest.getBookTitle())
@@ -98,7 +98,7 @@ public class BookController {
         return bookResponse;
     }
 
-    @PutMapping(value = "/updatebook/{id}", consumes = "application/json", produces = "application/json")
+    @PutMapping(value = "/updatebook/{id}")
 
     public BookResponse updateBook(@PathVariable(value="id") String id, @RequestBody BookRequest bookRequest)
     {
