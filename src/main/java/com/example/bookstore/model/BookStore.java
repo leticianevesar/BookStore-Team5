@@ -16,13 +16,17 @@ import javax.validation.constraints.NotBlank;
 
 
 public class BookStore {
+
     @Id
     private String id;
 
     @NotBlank (message = "Name is mandatory")
-    @Column(name = "name")
+   // @Column(name = "name")
     private String bookStoreName;
 
-    @Column(name = "city")
+    //@Column(name = "city")
     private String bookStoreCity;
-}
+
+
+    }
+

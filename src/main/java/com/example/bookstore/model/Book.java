@@ -21,10 +21,10 @@ public class Book {
     private String id;
 
     @NotBlank(message = "Title name is mandatory")
-    @Column(name = "title")
+    //@Column(name = "title")
     private String bookTitle;
 
-    @Column(name = "author")
+    //@Column(name = "author")
     private String bookAuthor;
 
     private BookType bookType; //VERIFY IF IT'S POSSIBLE

@@ -19,6 +19,6 @@ public class BookRequest
     private BookType bookType; //VERIFY IF IT'S POSSIBLE?????????????
     private BookStore bookStoreName;
     private BookStore bookStoreCity;
-    private String address;
+    //private String address;
 
 }
