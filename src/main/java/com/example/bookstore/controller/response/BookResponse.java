@@ -1,7 +1,7 @@
 package com.example.bookstore.controller.response;
 
 
-import com.example.bookstore.model.BookStore;
+import com.example.bookstore.model.Book;
 import com.example.bookstore.model.BookType;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,15 +13,20 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 @Data
 
-public class BookResponse
-{
+public class BookResponse {
     private String id;
     private String bookTitle;
     private String bookAuthor;
     private BookType bookType;
-    private BookStore bookStoreName;
-    private BookStore bookStoreCity;
     //private String address;
 
+    public BookResponse bookResponseService(Book book) {
+        this.id = book.getId();
+        this.bookTitle = book.getBookTitle();
+        this.bookAuthor = book.getBookAuthor();
+        this.bookType = book.getBookType();
+        return this;
+
+    }
 
 }

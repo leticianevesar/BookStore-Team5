@@ -11,8 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document
-public class BookStoreRequest
-{
+public class BookStoreRequest {
 
     private String bookStoreName;
 
