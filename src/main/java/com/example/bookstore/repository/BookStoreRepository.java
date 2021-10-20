@@ -13,6 +13,5 @@ import org.springframework.stereotype.Repository;
 
 public interface BookStoreRepository extends MongoRepository<BookStore, String> {
 
-    //Optional<BookStore> findByBookStoreName (String bookStoreName);
 
 }

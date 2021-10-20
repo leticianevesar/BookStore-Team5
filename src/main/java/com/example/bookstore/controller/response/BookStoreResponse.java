@@ -1,9 +1,8 @@
 package com.example.bookstore.controller.response;
 
+import com.example.bookstore.model.BookStore;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.persistence.Column;
 
 @AllArgsConstructor
 @Builder
@@ -12,9 +11,15 @@ import javax.persistence.Column;
 @Document
 @Data
 
-public class BookStoreResponse
-{
+public class BookStoreResponse {
     private String id;
     private String bookStoreName;
     private String bookStoreCity;
+
+    public BookStoreResponse bookStoreResponseService(BookStore bookStore) {
+        this.id = bookStore.getId();
+        this.bookStoreName = bookStore.getBookStoreName();
+        this.bookStoreCity = bookStore.getBookStoreCity();
+        return this;
+    }
 }

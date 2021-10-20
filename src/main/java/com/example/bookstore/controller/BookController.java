@@ -8,6 +8,7 @@ import com.example.bookstore.service.BookStoreService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,107 +27,59 @@ public class BookController {
 
 
     @GetMapping("/books")
-    public List<BookResponse> getAllBooks()
-    {
-        List <Book> books = bookService.findAll();
-        List <BookResponse> booksResponse = new ArrayList<>();
-        for (Book book: books)
-        {
-            booksResponse.add(new BookResponse(
-                    book.getId(),
-                    book.getBookTitle(),
-                    book.getBookAuthor(),
-                    book.getBookType(),
-                    book.getBookStoreName(),
-                    book.getBookStoreCity()
-            ));
+    public List<BookResponse> getAllBooks() {
+        List<Book> books = bookService.findAll();
+        List<BookResponse> booksResponse = new ArrayList<>();
+        for (Book book : books) {
+            booksResponse.add(
+                    new BookResponse().bookResponseService(book)
+            );
         }
         return booksResponse;
     }
 
-    @GetMapping("/getBookById/{id}")
-    public BookResponse getBookById (String id)
-    {
+    @GetMapping("/get-book-by-id/{id}")
+    public BookResponse getBookById(@PathVariable(value = "id") String id) {
         Book book = bookService.findById(id);
 
-        return new BookResponse(
-                book.getId(),
-                book.getBookTitle(),
-                book.getBookAuthor(),
-                book.getBookType(),
-                book.getBookStoreName(),
-                book.getBookStoreCity()
-        );
+        return new BookResponse().bookResponseService(book);
     }
 
     //Make GetMapping Find By Author
 
-    @GetMapping("/getBookById/{bookAuthor}")
-    public BookResponse getBookByBookAuthor (@PathVariable (value = "author") String bookAuthor)
-    {
+    @GetMapping("/get-book-by-author/{bookAuthor}")
+    public BookResponse getBookByBookAuthor(@PathVariable(value = "author") String bookAuthor) {
         Book book = bookService.findByBookAuthor(bookAuthor);
 
-        return new BookResponse(
-                book.getId(),
-                book.getBookTitle(),
-                book.getBookAuthor(),
-                book.getBookType(),
-                book.getBookStoreName(),
-                book.getBookStoreCity()
-        );
+        return new BookResponse().bookResponseService(book);
     }
 
     @PostMapping(value = "book-create")
-    public BookResponse addBook(@RequestBody BookRequest bookRequest) {
-        Book newBook = Book.builder()
-                .bookTitle(bookRequest.getBookTitle())
-                .bookAuthor(bookRequest.getBookAuthor())
-                .bookType(bookRequest.getBookType())
-                .bookStoreName(bookRequest.getBookStoreName())
-                .bookStoreCity(bookRequest.getBookStoreCity())
-                //.address(bookRequest.getAddress()) //Experiencia
-                .build();
+    public BookResponse addBook(@RequestBody @Valid BookRequest bookRequest) {
+        Book newBook = bookService.save(
+                Book.builder()
+                        .bookTitle(bookRequest.getBookTitle())
+                        .bookAuthor(bookRequest.getBookAuthor())
+                        .bookType(bookRequest.getBookType())
+                        .build());
 
-        bookService.save(newBook);
-        BookResponse bookResponse = new BookResponse();
-        bookResponse.setBookTitle(newBook.getBookTitle());
-        bookResponse.setBookAuthor(newBook.getBookAuthor());
-        bookResponse.setBookType(newBook.getBookType());
-        bookResponse.setBookStoreName(newBook.getBookStoreName());
-        bookResponse.setBookStoreCity((newBook.getBookStoreCity()));
-
-        return bookResponse;
+        return new BookResponse().bookResponseService(newBook);
     }
 
-    @PutMapping(value = "/updatebook/{id}")
+    @PutMapping(value = "/update-book/{id}")
 
-    public BookResponse updateBook(@PathVariable(value="id") String id, @RequestBody BookRequest bookRequest)
-    {
+    public BookResponse updateBook(@PathVariable(value = "id") String id, @RequestBody BookRequest bookRequest) {
         Book book = bookService.update(
                 id,
-                bookRequest.getBookTitle(),
-                bookRequest.getBookAuthor(),
-                bookRequest.getBookType(),
-                bookRequest.getBookStoreName(),
-                bookRequest.getBookStoreCity()
-        );
-        return new BookResponse(
-                book.getId(),
-                book.getBookTitle(),
-                book.getBookAuthor(),
-                book.getBookType(),
-                book.getBookStoreName(),
-                book.getBookStoreCity()
-        );
+                bookRequest);
+        return new BookResponse().bookResponseService(book);
     }
-    @DeleteMapping (value = "/deleteBook/{id}")
-    public void deleteBook(@PathVariable(value = "id") String id)
-    {
+
+    @DeleteMapping(value = "/delete-book/{id}")
+    public void deleteBook(@PathVariable(value = "id") String id) {
         bookService.deleteById(id);
     }
 }
-
-
 
 
 //CRUD

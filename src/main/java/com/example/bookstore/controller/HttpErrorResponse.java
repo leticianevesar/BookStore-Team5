@@ -1,5 +1,3 @@
-//HttpErrorResponse
-
 package com.example.bookstore.controller;
 
 import lombok.AllArgsConstructor;

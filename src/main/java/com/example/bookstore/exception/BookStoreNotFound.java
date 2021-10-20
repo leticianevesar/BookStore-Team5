@@ -1,7 +1,6 @@
 package com.example.bookstore.exception;
 
 
-
 public class BookStoreNotFound extends RuntimeException {
 
     public BookStoreNotFound() {

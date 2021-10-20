@@ -1,7 +1,7 @@
 package com.example.bookstore.service;
 
+import com.example.bookstore.controller.request.BookStoreRequest;
 import com.example.bookstore.exception.BookStoreNotFound;
-import com.example.bookstore.model.Book;
 import com.example.bookstore.model.BookStore;
 import com.example.bookstore.repository.BookStoreRepository;
 import org.springframework.stereotype.Service;
@@ -31,16 +31,16 @@ public class BookStoreService {
         return bookStoreRepository.save(newBookStore);
     }
 
-    public BookStore update(String id, String bookStoreName, String bookStoreCity) {
+    public BookStore update(String id, BookStoreRequest bookStoreRequest) {
         BookStore bookStore = this.findById(id);
-        bookStore.setBookStoreName(bookStoreName);
-        bookStore.setBookStoreCity(bookStoreCity);
+        bookStore.setBookStoreName(bookStoreRequest.getBookStoreName());
+        bookStore.setBookStoreCity(bookStoreRequest.getBookStoreCity());
 
         return bookStoreRepository.save(bookStore);
     }
 
-    public void deleteById (String id) {
-        this.findById(id);
+    public void deleteById(String id) {
+        //this.findById(id);
         bookStoreRepository.deleteById(id);
     }
 }

@@ -1,9 +1,11 @@
 package com.example.bookstore.controller.request;
 
 
-import com.example.bookstore.model.BookStore;
 import com.example.bookstore.model.BookType;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
@@ -12,13 +14,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @Document
 
-public class BookRequest
-{
+public class BookRequest {
     private String bookTitle;
     private String bookAuthor;
-    private BookType bookType; //VERIFY IF IT'S POSSIBLE?????????????
-    private BookStore bookStoreName;
-    private BookStore bookStoreCity;
-    //private String address;
+    private BookType bookType;
+
 
 }

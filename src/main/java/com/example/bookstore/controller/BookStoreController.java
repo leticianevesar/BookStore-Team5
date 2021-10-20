@@ -1,10 +1,7 @@
 package com.example.bookstore.controller;
 
-import com.example.bookstore.controller.request.BookRequest;
 import com.example.bookstore.controller.request.BookStoreRequest;
-import com.example.bookstore.controller.response.BookResponse;
 import com.example.bookstore.controller.response.BookStoreResponse;
-import com.example.bookstore.model.Book;
 import com.example.bookstore.model.BookStore;
 import com.example.bookstore.service.BookStoreService;
 import org.springframework.validation.annotation.Validated;
@@ -26,7 +23,7 @@ public class BookStoreController {
     }
 
 
-    @GetMapping("/bookStores")
+    @GetMapping("/book-stores")
     public List<BookStoreResponse> getAllBookStores() {
         List<BookStore> bookStores = bookStoreService.findAll();
         List<BookStoreResponse> bookStoresResponse = new ArrayList<>();
@@ -41,58 +38,38 @@ public class BookStoreController {
         return bookStoresResponse;
     }
 
-    @GetMapping("/getBookStoreById/{id}")
-    public BookStoreResponse getBookStoreById(String id) {
+    @GetMapping("/get-book-store-by-id/{id}")
+    public BookStoreResponse getBookStoreById(@PathVariable(value = "id") String id) {
         BookStore bookStore = bookStoreService.findById(id);
 
-        return new BookStoreResponse(
-                bookStore.getId(),
-                bookStore.getBookStoreName(),
-                bookStore.getBookStoreCity()
-        );
+        return new BookStoreResponse().bookStoreResponseService(bookStore);
+
     }
 
-    @PostMapping(value = "bookStore-create")
+    @PostMapping(value = "book-store-create")
     public BookStoreResponse addBookStore(@RequestBody BookStoreRequest bookStoreRequest) {
-        BookStore newBookStore = BookStore.builder()
-                .bookStoreName(bookStoreRequest.getBookStoreName())
-                .bookStoreCity(bookStoreRequest.getBookStoreCity())
-                //.address(bookRequest.getAddress()) //Experiencia
-                .build();
+        BookStore newBookStore = bookStoreService.save(
+                BookStore.builder()
+                        .bookStoreName(bookStoreRequest.getBookStoreName())
+                        .bookStoreCity(bookStoreRequest.getBookStoreCity())
+                        .build());
 
-        bookStoreService.save(newBookStore);
-        BookStoreResponse bookStoreResponse = new BookStoreResponse();
-        bookStoreResponse.setBookStoreName(newBookStore.getBookStoreName());
-        bookStoreResponse.setBookStoreCity((newBookStore.getBookStoreCity()));
-
-        return bookStoreResponse;
+        return new BookStoreResponse().bookStoreResponseService(newBookStore);
     }
 
-    @PutMapping(value = "/updateBookStore/{id}")
+    @PutMapping(value = "/update-book-store/{id}")
 
     public BookStoreResponse updateBookStore(@PathVariable(value = "id") String id, @RequestBody BookStoreRequest bookStoreRequest) {
         BookStore bookStore = bookStoreService.update(
                 id,
-                bookStoreRequest.getBookStoreName(),
-                bookStoreRequest.getBookStoreCity()
+                bookStoreRequest
         );
-        return new BookStoreResponse(
-                bookStore.getId(),
-                bookStore.getBookStoreName(),
-                bookStore.getBookStoreCity()
-        );
-
-
-        //Fazer Getmapping findall
-        //Fazer e find by id
-        //Fazer Putmapping - Update
-        //FAzer PostMapping - create
-
+        return new BookStoreResponse().bookStoreResponseService(bookStore);
     }
 
-    @DeleteMapping (value = "/deleteBookStore/{id}")
-    public void deleteBookStore(@PathVariable(value = "id") String id)
-    {
+
+    @DeleteMapping(value = "/delete-book-store/{id}")
+    public void deleteBookStore(@PathVariable(value = "id") String id) {
         bookStoreService.deleteById(id);
     }
 }
