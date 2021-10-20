@@ -26,14 +26,14 @@ public class SwaggerConfig {
                 .build();
     }
 
-//// Documentation of API INFO. Follow the link - https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api
-//    private ApiInfo apiInfo() {
-//        return new ApiInfo(
-//                "My REST API",
-//                "Some custom description of API BookStore.",
-//                "API TOS",
-//                "Terms of service",
-//                new Contact("Letícia Neves", "www.example.com", "leticianeves.ar@gmail.com"),
-//                "License of API", "API license URL", Collections.emptyList());
-//    }
+// Documentation of API INFO. Follow the link - https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api
+    private ApiInfo apiInfo() {
+        return new ApiInfo(
+                "My REST API",
+                "Some custom description of API BookStore.",
+                "API TOS",
+                "Terms of service",
+                new Contact("Letícia Neves", "www.example.com", "leticianeves.ar@gmail.com"),
+                "License of API", "API license URL", Collections.emptyList());
+    }
 }

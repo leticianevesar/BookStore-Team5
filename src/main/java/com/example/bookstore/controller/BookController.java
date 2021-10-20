@@ -4,6 +4,7 @@ import com.example.bookstore.controller.request.BookRequest;
 import com.example.bookstore.controller.response.BookResponse;
 import com.example.bookstore.model.Book;
 import com.example.bookstore.service.BookService;
+import com.example.bookstore.service.BookStoreService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,9 +17,11 @@ import java.util.List;
 public class BookController {
 
     private final BookService bookService;
+    private final BookStoreService bookStoreService;
 
-    public BookController(BookService bookService) {
+    public BookController(BookService bookService, BookStoreService bookStoreService) {
         this.bookService = bookService;
+        this.bookStoreService = bookStoreService;
     }
 
 
@@ -93,6 +96,33 @@ public class BookController {
         bookResponse.setBookStoreCity((newBook.getBookStoreCity()));
 
         return bookResponse;
+    }
+
+    @PutMapping(value = "/updatebook/{id}", consumes = "application/json", produces = "application/json")
+
+    public BookResponse updateBook(@PathVariable(value="id") String id, @RequestBody BookRequest bookRequest)
+    {
+        Book book = bookService.update(
+                id,
+                bookRequest.getBookTitle(),
+                bookRequest.getBookAuthor(),
+                bookRequest.getBookType(),
+                bookRequest.getBookStoreName(),
+                bookRequest.getBookStoreCity()
+        );
+        return new BookResponse(
+                book.getId(),
+                book.getBookTitle(),
+                book.getBookAuthor(),
+                book.getBookType(),
+                book.getBookStoreName(),
+                book.getBookStoreCity()
+        );
+    }
+    @DeleteMapping (value = "/deleteBook/{id}")
+    public void deleteBook(@PathVariable(value = "id") String id)
+    {
+        bookService.deleteById(id);
     }
 }
 

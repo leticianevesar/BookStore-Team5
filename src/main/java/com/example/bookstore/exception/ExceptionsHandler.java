@@ -34,6 +34,26 @@ public class ExceptionsHandler {
         );
     }
 
+    @ExceptionHandler({BookStoreNotFound.class})
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public HttpErrorResponse handleGenericException(BookStoreNotFound exception) {
+        return new HttpErrorResponse(
+                404,
+                exception.getMessage(),
+                LocalDateTime.now()
+        );
+    }
+
+    @ExceptionHandler({DuplicateBookStoreException.class})
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public HttpErrorResponse handleGenericException(DuplicateBookStoreException exception) {
+        return new HttpErrorResponse(
+                409,
+                exception.getMessage(),
+                LocalDateTime.now()
+        );
+    }
+
 //        @ExceptionHandler({SkillNotFound.class})
 //        @ResponseStatus(HttpStatus.NOT_FOUND)
 //        public HttpErrorResponse handleGenericException(SkillNotFound exception) {
