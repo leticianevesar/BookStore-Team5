@@ -52,7 +52,7 @@ public class BookStoreController {
         );
     }
 
-    @PostMapping(value = "bookStore-create", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "bookStore-create")
     public BookStoreResponse addBookStore(@RequestBody BookStoreRequest bookStoreRequest) {
         BookStore newBookStore = BookStore.builder()
                 .bookStoreName(bookStoreRequest.getBookStoreName())
@@ -68,7 +68,7 @@ public class BookStoreController {
         return bookStoreResponse;
     }
 
-    @PutMapping(value = "/updateBookStore/{id}", consumes = "application/json", produces = "application/json")
+    @PutMapping(value = "/updateBookStore/{id}")
 
     public BookStoreResponse updateBookStore(@PathVariable(value = "id") String id, @RequestBody BookStoreRequest bookStoreRequest) {
         BookStore bookStore = bookStoreService.update(
