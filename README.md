@@ -50,7 +50,7 @@ Main features:
 
 | HTTP METHOD | PUT           |
 | ----------- | ---------------  | 
-| CRUD OP	  			 	     | CREATE          
+| CRUD OP	  			 	     | UPDATE        
 | ​​​/api/updateBookStore/{id}     | Update bookstore by ID
 
 | HTTP METHOD | DELETE           |
